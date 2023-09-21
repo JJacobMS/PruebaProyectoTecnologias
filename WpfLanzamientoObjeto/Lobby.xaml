@@ -1,0 +1,102 @@
+﻿<Window x:Class="WpfLanzamientoObjeto.Lobby"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLanzamientoObjeto"
+        mc:Ignorable="d"  Height="576" Width="1024">
+    <Window.Resources>
+        <Style x:Key="estiloLblNumeroJugadores" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="{StaticResource FuentesTitulo}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Recursos/TableroLanzamientoFondo.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="#604111" BorderThickness="3" CornerRadius="10" Margin="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Height="35" Width="105"
+                            Style="{StaticResource estiloBotonSalir}">Salir</Button>
+                    <Label FontSize="38" VerticalAlignment="Center" Style="{StaticResource estiloLabelTituloTextos}">LOBBY DE ESPERA</Label>
+                </Grid>
+                <Border BorderBrush="#604111" BorderThickness="3" CornerRadius="10" Margin="15" Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".35*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox>
+                            <Border Background="#052B42" CornerRadius="5" Margin="10" Width="120" Height="140">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Image Source="/Recursos/TableroCuatroConFondo.png" Height="100" Margin="10,10,10,0"/>
+                                    <Label Style="{StaticResource estiloLblNumeroJugadores}">4 JUGADORES</Label>
+                                </StackPanel>
+                            </Border>
+                        </Viewbox>
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <Viewbox>
+                                <Grid Margin="5" Height="60" Width="380">
+                                    <Image Source="/Recursos/Banner.png"/>
+                                    <Label Style="{StaticResource estiloInicioSesion}" FontSize="25" Margin="0,10,0,0">Modo de Juego Normal</Label>
+                                </Grid>
+                            </Viewbox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Style="{StaticResource estiloLblDatos}" 
+                                       Margin="0" FontSize="12" VerticalAlignment="Center">Número de Jugadores:</Label>
+                                <TextBox Grid.Column="1" Style="{StaticResource estiloTextBoxDatosAzul}" 
+                                         Margin="5" Height="28">4 Jugadores</TextBox>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Style="{StaticResource estiloLblDatos}" 
+                                       Margin="0" FontSize="12" VerticalAlignment="Center">Host de la partida:</Label>
+                                <TextBox Grid.Column="1" Style="{StaticResource estiloTextBoxDatosAzul}" 
+                                         Margin="5" Height="28">melus_1</TextBox>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Style="{StaticResource estiloLblDatos}" 
+                                       Margin="0" FontSize="12" VerticalAlignment="Center">Código de la partida:</Label>
+                                <TextBox Grid.Column="1" Style="{StaticResource estiloTextBoxDatosAzul}" 
+                                         Margin="5" Height="28">1234567</TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="#17033B" BorderThickness="3" CornerRadius="10" Margin="15">
+
+        </Border>
+
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfLanzamientoObjeto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLanzamientoObjeto"
+        mc:Ignorable="d"
+        Height="768" Width="602" WindowStartupLocation="CenterScreen">
+
+    <Canvas Name="cnvEspacioJuego" Focusable="True">
+        <Image Source="/Recursos/TableroCentral.png" Height="439" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Image Source="/Recursos/RielAzul.png" Height="352" Width="155" Canvas.Left="123" Canvas.Top="400" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+        <Ellipse Name="ellPeon" Width="20" Height="20" Fill="Aquamarine" Canvas.Left="190" Canvas.Top="691" ></Ellipse>
+        <Ellipse Name="ellPeonOtro" Width="20" Height="20" Fill="#E8A02C" Canvas.Left="218" Canvas.Top="85" HorizontalAlignment="Left" VerticalAlignment="Top" ></Ellipse>
+        <Ellipse Name="ellPeonEnemigo" Width="20" Height="20" Fill="#0D9344" Canvas.Left="30" Canvas.Top="164" HorizontalAlignment="Left" VerticalAlignment="Top" ></Ellipse>
+        <Button Height="24" Width="90" Canvas.Left="433" Canvas.Top="624" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ClicIniciar">Tirar dado</Button>
+        <Line Name="lnAnguloLanzamiento" X1="0" Y1="0" X2="-150" Y2="0"  StrokeThickness="3" Stroke="Black" Canvas.Left="200" Canvas.Top="700"></Line>
+        <Button Height="24" Width="88" Canvas.Left="433" Canvas.Top="663" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ClicLanzar">Lanzar</Button>
+        <Image Name="imgDado" Source="Recursos/gato1.png" Height="150" Canvas.Left="402" Canvas.Top="452"></Image>
+
+    </Canvas>
+</Window>

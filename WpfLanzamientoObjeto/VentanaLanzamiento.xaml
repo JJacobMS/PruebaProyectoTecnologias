@@ -1,0 +1,191 @@
+﻿<Window x:Class="WpfLanzamientoObjeto.VentanaLanzamiento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLanzamientoObjeto"
+        mc:Ignorable="d"
+        Title="VentanaLanzamiento" Height="576" Width="1024" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+
+        <Style x:Key="estiloDataGridListaJugadores" TargetType="DataGrid">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="#FAC93A"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#604111"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#604111"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="#604111"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+        
+        <Style x:Key="estiloEncabezadoListaJugadores" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="#604111"/>
+            <Setter Property="FontFamily" Value="{StaticResource FuentesTexto}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#FAC93A"/>
+        </Style>
+
+        <Style x:Key="estiloDtGridRowFilaTablaJugadores" TargetType="DataGridRow">
+            <Setter Property="Background" Value="#FAC93A"/>
+        </Style>
+
+        <Style x:Key="estilolstBoxChat" TargetType="ListBox">
+            <Setter Property="FontFamily" Value="Yu Gothic UI Semibold"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel VerticalAlignment="Bottom"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <ListBoxItem>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="0,0,10,0">
+                                        <Run Text="{Binding Path=AutorMensaje.Nickname}"></Run>
+                                        <Run Text=":"></Run>
+                                </TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding Path=TextoMensaje}"></TextBlock>
+                            </Grid>
+                        </ListBoxItem>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Recursos/TableroLanzamientoFondo.png"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".57*"/>
+            <ColumnDefinition Width=".4*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Column="0">
+            <Border Width="619" Height="576" BorderBrush="#604111" BorderThickness="3" CornerRadius="10">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Recursos/TableroCuatro.png"/>
+                </Border.Background>
+                <Canvas>
+                    <Button Canvas.Left="139" Canvas.Top="129" Style="{StaticResource estiloBotonTableroAmarillo}">LANZAR PEÓN</Button>
+                    <Button Canvas.Left="139" Canvas.Top="169" Style="{StaticResource estiloBotonTableroAmarillo}">TIRAR DADO</Button>
+                    <Button Canvas.Left="139" Canvas.Top="380" Style="{StaticResource estiloBotonTableroAzul}">LANZAR PEÓN</Button>
+                    <Button Canvas.Left="139" Canvas.Top="418" Style="{StaticResource estiloBotonTableroAzul}">TIRAR DADO</Button>
+                    <Button Canvas.Left="387" Canvas.Top="129" Style="{StaticResource estiloBotonTableroRojo}">LANZAR PEÓN</Button>
+                    <Button Canvas.Left="387" Canvas.Top="169" Style="{StaticResource estiloBotonTableroRojo}">TIRAR DADO</Button>
+                    <Button Canvas.Left="387" Canvas.Top="380" Style="{StaticResource estiloBotonTableroVerde}">LANZAR PEÓN</Button>
+                    <Button Canvas.Left="387" Canvas.Top="418" Style="{StaticResource estiloBotonTableroVerde}" IsEnabled="False">TIRAR DADO</Button>
+                </Canvas>
+            </Border>
+        </Viewbox>
+
+        <Viewbox Grid.Column="1">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Height="576" Width="425">
+            <Border BorderBrush="#604111" BorderThickness="4" Margin="10,10,10,10" CornerRadius="10" Height="260">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Style="{StaticResource estiloLabelTituloTextos}">LISTA DE JUGADORES</Label>
+                    <DataGrid Grid.Row="1" ColumnHeaderStyle="{StaticResource estiloEncabezadoListaJugadores}" Style="{StaticResource estiloDataGridListaJugadores}"
+                              RowStyle="{StaticResource estiloDtGridRowFilaTablaJugadores}"
+                              Name="dtGridJugadores">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Jugador" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Nickname}"></TextBlock>
+                                            <TextBlock Text="{Binding Path=Correo}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Estado" Width="Auto" CellStyle="{DynamicResource estiloDataCellEstadoInternet}"/>
+                            <DataGridTemplateColumn Header="" Width="Auto">
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource estiloBtnExpulsar}" Click="ClicExpulsar" CommandParameter="{Binding}">EXPULSAR</Button>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=EsHost}" Value="True">
+                                                <Setter Property="ContentTemplate">
+                                                    <Setter.Value>
+                                                        <DataTemplate>
+                                                            <Button Style="{StaticResource estiloBtnHostPartida}">HOST</Button>
+                                                        </DataTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding Path=EstaExpulsado}" Value="True">
+                                                <Setter Property="ContentTemplate">
+                                                    <Setter.Value>
+                                                        <DataTemplate>
+                                                            <Button Style="{StaticResource estiloBtnDesactivado}">EXPULSAR</Button>
+                                                        </DataTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                
+                </Grid>
+            </Border>
+                <Border BorderBrush="#604111" BorderThickness="4" CornerRadius="10" Margin="10,10,10,10" Height="260" Background="#F6DE7B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="Transparent">
+                        <Label>CHAT</Label>
+                    </Border>
+                        <ListBox Name="lstBoxChat" Grid.Row="1" Style="{StaticResource estilolstBoxChat}"></ListBox>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label>Melus_1:</Label>
+                            <TextBox Grid.Column="1"></TextBox>
+                            <Button Grid.Column="2">Enviar</Button>
+                        </Grid>
+                    </Grid>
+            </Border>
+        </StackPanel>
+        </Viewbox>
+
+        
+
+    </Grid>
+</Window>
