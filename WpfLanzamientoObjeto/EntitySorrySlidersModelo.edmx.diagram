@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9cbacb450e184fdc9cfd08b5eb22c841" Name="Diagram1" ZoomLevel="77" >
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.Usuario" Width="1.5" PointX="2.125" PointY="0.5" />
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.Cuenta" Width="1.625" PointX="2.25" PointY="3.25" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.CuentaUsuario" />
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.Partida" Width="1.5" PointX="0.875" PointY="7.25" />
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.RelacionBaneados" Width="2.5" PointX="5" PointY="2.75" />
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.RelacionPartidaCuenta" Width="2" PointX="3.25" PointY="7.125" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta1" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.PartidaRelacionPartidaCuenta" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.CuentaPartida" ManuallyRouted="false" >
+          <ConnectorPoint PointX="3" PointY="5.9994921875" />
+          <ConnectorPoint PointX="3" PointY="6.25" />
+          <ConnectorPoint PointX="0.41506394743919373" PointY="6.25" />
+          <ConnectorPoint PointX="0.41506394743919373" PointY="10.115143229166666" />
+          <ConnectorPoint PointX="2.375" PointY="10.115143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.CuentaRelacionPartidaCuenta" />
+        <EntityTypeShape EntityType="BaseDeDatosSorrySlidersModel.RelaciónAmigos" Width="2.5" PointX="5" PointY="5" />
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta" ></AssociationConnector>
+        <AssociationConnector Association="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

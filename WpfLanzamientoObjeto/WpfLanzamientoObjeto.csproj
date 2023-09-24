@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,14 +64,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cuenta.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntitySorrySlidersModelo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitySorrySlidersModelo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntitySorrySlidersModelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntitySorrySlidersModelo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitySorrySlidersModelo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="InicioSesion.xaml.cs">
       <DependentUpon>InicioSesion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lobby.xaml.cs">
       <DependentUpon>Lobby.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Partida.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelacionBaneados.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelacionPartidaCuenta.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelaciónAmigos.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnirsePartida.xaml.cs">
       <DependentUpon>UnirsePartida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>EntitySorrySlidersModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="VentanaLanzamiento.xaml.cs">
       <DependentUpon>VentanaLanzamiento.xaml</DependentUpon>
@@ -127,6 +169,14 @@
     <Resource Include="Fonts\FiraSansExtraCondensed-Regular.ttf" />
     <Resource Include="Fonts\WixMadeforText-Bold.ttf" />
     <Resource Include="Fonts\WixMadeforText-Regular.ttf" />
+    <EntityDeploy Include="EntitySorrySlidersModelo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntitySorrySlidersModelo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntitySorrySlidersModelo.edmx.diagram">
+      <DependentUpon>EntitySorrySlidersModelo.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -178,6 +228,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\TableroCuatroConFondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntitySorrySlidersModelo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntitySorrySlidersModelo.Context.cs</LastGenOutput>
+      <DependentUpon>EntitySorrySlidersModelo.edmx</DependentUpon>
+    </Content>
+    <Content Include="EntitySorrySlidersModelo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntitySorrySlidersModelo.edmx</DependentUpon>
+      <LastGenOutput>EntitySorrySlidersModelo.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

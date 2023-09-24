@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaseDeDatosSorrySlidersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BaseDeDatosSorrySlidersModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseDeDatosSorrySlidersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BaseDeDatosSorrySlidersEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="UsuarioSet" EntityType="BaseDeDatosSorrySlidersModel.Usuario" />
+          <EntitySet Name="CuentaSet" EntityType="BaseDeDatosSorrySlidersModel.Cuenta" />
+          <AssociationSet Name="CuentaUsuario" Association="BaseDeDatosSorrySlidersModel.CuentaUsuario">
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <EntitySet Name="PartidaSet" EntityType="BaseDeDatosSorrySlidersModel.Partida" />
+          <EntitySet Name="RelacionBaneadosSet" EntityType="BaseDeDatosSorrySlidersModel.RelacionBaneados" />
+          <EntitySet Name="RelacionPartidaCuentaSet" EntityType="BaseDeDatosSorrySlidersModel.RelacionPartidaCuenta" />
+          <AssociationSet Name="RelacionBaneadosCuenta" Association="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta">
+            <End Role="RelacionBaneados" EntitySet="RelacionBaneadosSet" />
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="RelacionBaneadosCuenta1" Association="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta1">
+            <End Role="RelacionBaneados" EntitySet="RelacionBaneadosSet" />
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="PartidaRelacionPartidaCuenta" Association="BaseDeDatosSorrySlidersModel.PartidaRelacionPartidaCuenta">
+            <End Role="Partida" EntitySet="PartidaSet" />
+            <End Role="RelacionPartidaCuenta" EntitySet="RelacionPartidaCuentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="CuentaPartida" Association="BaseDeDatosSorrySlidersModel.CuentaPartida">
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+            <End Role="Partida" EntitySet="PartidaSet" />
+          </AssociationSet>
+          <AssociationSet Name="CuentaRelacionPartidaCuenta" Association="BaseDeDatosSorrySlidersModel.CuentaRelacionPartidaCuenta">
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+            <End Role="RelacionPartidaCuenta" EntitySet="RelacionPartidaCuentaSet" />
+          </AssociationSet>
+          <EntitySet Name="RelaciónAmigosSet" EntityType="BaseDeDatosSorrySlidersModel.RelaciónAmigos" />
+          <AssociationSet Name="RelaciónAmigosCuenta" Association="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta">
+            <End Role="RelaciónAmigos" EntitySet="RelaciónAmigosSet" />
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="RelaciónAmigosCuenta1" Association="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta1">
+            <End Role="RelaciónAmigos" EntitySet="RelaciónAmigosSet" />
+            <End Role="Cuenta" EntitySet="CuentaSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="60" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Cuenta" Relationship="BaseDeDatosSorrySlidersModel.CuentaUsuario" FromRole="Usuario" ToRole="Cuenta" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="CorreoElectronico" />
+          </Key>
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="100" />
+          <Property Name="Avatar" Type="Byte" Nullable="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="64" />
+          <Property Name="Nickname" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Usuario" Relationship="BaseDeDatosSorrySlidersModel.CuentaUsuario" FromRole="Cuenta" ToRole="Usuario" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RelacionBaneados" Relationship="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta" FromRole="Cuenta" ToRole="RelacionBaneados" />
+          <NavigationProperty Name="RelacionBaneados1" Relationship="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta1" FromRole="Cuenta" ToRole="RelacionBaneados" />
+          <NavigationProperty Name="Partida" Relationship="BaseDeDatosSorrySlidersModel.CuentaPartida" FromRole="Cuenta" ToRole="Partida" />
+          <NavigationProperty Name="RelacionPartidaCuenta" Relationship="BaseDeDatosSorrySlidersModel.CuentaRelacionPartidaCuenta" FromRole="Cuenta" ToRole="RelacionPartidaCuenta" />
+          <NavigationProperty Name="RelaciónAmigos" Relationship="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta" FromRole="Cuenta" ToRole="RelaciónAmigos" />
+          <NavigationProperty Name="RelaciónAmigos1" Relationship="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta1" FromRole="Cuenta" ToRole="RelaciónAmigos" />
+        </EntityType>
+        <Association Name="CuentaUsuario">
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="*" />
+          <End Type="BaseDeDatosSorrySlidersModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="CodigoPartida" />
+          </Key>
+          <Property Name="CodigoPartida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CantidadJugadores" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RelacionPartidaCuenta" Relationship="BaseDeDatosSorrySlidersModel.PartidaRelacionPartidaCuenta" FromRole="Partida" ToRole="RelacionPartidaCuenta" />
+          <NavigationProperty Name="Cuenta" Relationship="BaseDeDatosSorrySlidersModel.CuentaPartida" FromRole="Partida" ToRole="Cuenta" />
+          <Property Name="CuentaCorreoElectronico" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RelacionBaneados">
+          <Key>
+            <PropertyRef Name="IdRelacionBaneados" />
+          </Key>
+          <Property Name="IdRelacionBaneados" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cuenta" Relationship="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta" FromRole="RelacionBaneados" ToRole="Cuenta" />
+          <Property Name="CorreoElectronicoJugadorPrincipal" Type="String" Nullable="false" MaxLength="100" />
+          <NavigationProperty Name="Cuenta1" Relationship="BaseDeDatosSorrySlidersModel.RelacionBaneadosCuenta1" FromRole="RelacionBaneados" ToRole="Cuenta" />
+          <Property Name="CorreoElectronicoJugadorBaneado" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RelacionPartidaCuenta">
+          <Key>
+            <PropertyRef Name="IdPartidaCuenta" />
+          </Key>
+          <Property Name="IdPartidaCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Posicion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Partida" Relationship="BaseDeDatosSorrySlidersModel.PartidaRelacionPartidaCuenta" FromRole="RelacionPartidaCuenta" ToRole="Partida" />
+          <Property Name="CodigoPartida" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="BaseDeDatosSorrySlidersModel.CuentaRelacionPartidaCuenta" FromRole="RelacionPartidaCuenta" ToRole="Cuenta" />
+          <Property Name="CuentaCorreoElectronico" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="RelacionBaneadosCuenta">
+          <End Type="BaseDeDatosSorrySlidersModel.RelacionBaneados" Role="RelacionBaneados" Multiplicity="*" />
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="RelacionBaneados">
+              <PropertyRef Name="CorreoElectronicoJugadorPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelacionBaneadosCuenta1">
+          <End Type="BaseDeDatosSorrySlidersModel.RelacionBaneados" Role="RelacionBaneados" Multiplicity="*" />
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="RelacionBaneados">
+              <PropertyRef Name="CorreoElectronicoJugadorBaneado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PartidaRelacionPartidaCuenta">
+          <End Type="BaseDeDatosSorrySlidersModel.Partida" Role="Partida" Multiplicity="1" />
+          <End Type="BaseDeDatosSorrySlidersModel.RelacionPartidaCuenta" Role="RelacionPartidaCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="CodigoPartida" />
+            </Principal>
+            <Dependent Role="RelacionPartidaCuenta">
+              <PropertyRef Name="CodigoPartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CuentaPartida">
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <End Type="BaseDeDatosSorrySlidersModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="CuentaCorreoElectronico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CuentaRelacionPartidaCuenta">
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <End Type="BaseDeDatosSorrySlidersModel.RelacionPartidaCuenta" Role="RelacionPartidaCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="RelacionPartidaCuenta">
+              <PropertyRef Name="CuentaCorreoElectronico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RelaciónAmigos">
+          <Key>
+            <PropertyRef Name="IdRelaciónAmigos" />
+          </Key>
+          <Property Name="IdRelaciónAmigos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cuenta" Relationship="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta" FromRole="RelaciónAmigos" ToRole="Cuenta" />
+          <Property Name="CorreoElectrónicoJugadorPrincipal" Type="String" Nullable="false" MaxLength="100" />
+          <NavigationProperty Name="Cuenta1" Relationship="BaseDeDatosSorrySlidersModel.RelaciónAmigosCuenta1" FromRole="RelaciónAmigos" ToRole="Cuenta" />
+          <Property Name="CorreoElectrónicoJugadorAmigo" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="RelaciónAmigosCuenta">
+          <End Type="BaseDeDatosSorrySlidersModel.RelaciónAmigos" Role="RelaciónAmigos" Multiplicity="*" />
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="RelaciónAmigos">
+              <PropertyRef Name="CorreoElectrónicoJugadorPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelaciónAmigosCuenta1">
+          <End Type="BaseDeDatosSorrySlidersModel.RelaciónAmigos" Role="RelaciónAmigos" Multiplicity="*" />
+          <End Type="BaseDeDatosSorrySlidersModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="CorreoElectronico" />
+            </Principal>
+            <Dependent Role="RelaciónAmigos">
+              <PropertyRef Name="CorreoElectrónicoJugadorAmigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaseDeDatosSorrySlidersModelStoreContainer" CdmEntityContainer="BaseDeDatosSorrySlidersEntities" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
